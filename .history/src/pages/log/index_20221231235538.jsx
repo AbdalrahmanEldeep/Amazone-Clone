@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Amazone from "../../assets/imgs/amazone.png";
 import {createUserWithEmailAndPassword} from "firebase/auth"
-import {auth} from "../../../firebase";
-
 
 const LoginBox = styled.div`
   display: flex;
@@ -70,11 +68,10 @@ const FormP = styled.p`
   justify-content: center;
 `
 export default function Login() {
-  const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("");
+
   const register = (e) =>{
      e.preventDefault();
-     createUserWithEmailAndPassword(auth,email,password);
+
   }
 
   useEffect(() =>{

@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import Amazone from "../../assets/imgs/amazone.png";
 import {createUserWithEmailAndPassword} from "firebase/auth"
 import {auth} from "../../../firebase";
-
-
 const LoginBox = styled.div`
   display: flex;
   justify-content: center;

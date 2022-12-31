@@ -1,16 +1,15 @@
 import {initializeApp} from "firebase/app"
 import {getAuth} from "firebase/auth"
 import {getFirestore} from "firebase/firestore"
-import { API_KEY, APP_ID, Auth, MESSAGING, PROJECT_ID, STORAGE_ID } from "./localFirebase";
 
 
 const firebaseConfig = {
-  apiKey: API_KEY,
-  authDomain:Auth ,
-  projectId:PROJECT_ID ,
-  storageBucket:STORAGE_ID,
-  messagingSenderId:MESSAGING,
-  appId:APP_ID
+  apiKey: process.env.API_KEY,
+  authDomain:process.env.Auth ,
+  projectId:process.env.PROJECT_ID ,
+  storageBucket:process.env.STORAGE_ID,
+  messagingSenderId:process.env.MESSAGING,
+  appId:process.env.APP_ID
 };
 // const firebaseConfig = {
 //   apiKey: "AIzaSyBFrGUhP5ZsepYn4b4gKZkagDtRCotLKg8",
