@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+:root{
+    --dark-color:rgb(2, 27, 34);
+    --brown-color:rgb(179, 98, 52);
+    --white-color:#fff;
+    --primary-color:rgb(11, 52, 63);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Tajawal', sans-serif;
+}
+a{
+    text-decoration: none;
+    color: var(--white-color);
+}
