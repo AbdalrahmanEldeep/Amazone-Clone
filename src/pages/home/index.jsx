@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Header } from '../../components/Header';
 
 function App() {
 
@@ -6,7 +7,10 @@ function App() {
     document.title = "Home | Page";
   })
   return (
-    <h1>Hallo Wolrd</h1>
+    <>
+      <Header/>
+      <h1>Hallo Wolrd</h1>
+    </>
   )
 }
 

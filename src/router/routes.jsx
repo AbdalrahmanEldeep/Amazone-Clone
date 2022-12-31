@@ -6,9 +6,9 @@ import App from "../pages/home"
 import NotFound from '../pages/error'
 
 export const Root = () => {
+  
   return (
     <Router>
-        <Header/>
         <Routes>
             <Route path='/' element={<App />}/>
             <Route path='/login' element={<Login/>}/>
