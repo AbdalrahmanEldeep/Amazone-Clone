@@ -1,0 +1,17 @@
+import React, { useEffect } from 'react'
+import styled from 'styled-components';
+
+const CardBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    
+`
+
+export const Product = ({data}) => {
+    const [title,id,price,rating,image,description] = data;
+  return (
+    <div>
+
+    </div>
+  )
+}
