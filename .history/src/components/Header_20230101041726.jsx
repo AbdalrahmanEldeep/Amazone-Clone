@@ -134,8 +134,8 @@ export const Header = () => {
                     </Flex>  
                   <Link to="/orders">
                     <Flex dir='column' align="flex-start" just="center">
-                      <p>Returm</p>
-                      <h3>Orders</h3>
+                      <span>Returm</span>
+                      <h3>Your Order</h3>
                     </Flex>  
                   </Link> 
                   <Link to="/prime">

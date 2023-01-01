@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Amazone from "../../assets/imgs/amazone.png";
 import {createUserWithEmailAndPassword} from "firebase/auth"
 import {auth} from "../../../firebase";
-import { useAuth } from '../../context/GlobalContext';
 
 
 const LoginBox = styled.div`
@@ -71,13 +70,11 @@ const FormP = styled.p`
   justify-content: center;
 `
 export default function Login() {
-  const {user} = useAuth();
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
-  const navigate = useNavigate()
   const register = (e) =>{
      e.preventDefault();
-     createUserWithEmailAndPassword(auth,email,password).then((auth) => navigate("/"));
+     createUserWithEmailAndPassword(auth,email,password);
   }
 
   useEffect(() =>{

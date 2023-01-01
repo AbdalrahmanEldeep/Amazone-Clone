@@ -5,7 +5,7 @@ export const customState = {
 }
 
 export const AppReducer = (state = customState,action) => {
-    switch(action.type){
+    switch(action){
         case "SET_USER":
             return{
                 ...state,

@@ -66,9 +66,10 @@ const Inp = styled.input`
  font-size: 1.3rem;
 `
 const LinksBox = styled.div`
+   gap: 10px;
    min-width: 500px;
    transition: bottom ease .4s;
-   padding: 0 30px;
+   padding: 0 10px;
    @media screen and (max-width:976px){
      position: fixed;
      bottom:0px;
@@ -83,6 +84,7 @@ const LinksBox = styled.div`
   }
 `
 const LinkEle = styled.div`
+  gap: 14px;
 `
 
 const ToggleIcon = styled.div`
@@ -125,7 +127,7 @@ export const Header = () => {
         <LinksBox bottom={toggler ? "-100%" : "0px"}>
           <Flex just= {toggler ? "center" : "flex-end"}>
              <LinkEle>
-               <Flex gp= {toggler ? "50px"  : "30px"}>
+               <Flex gp= {toggler ? "40px"  : "30px"}>
                     <Flex style={{color:"#fff",cursor:"pointer"}} dir='column' align="flex-start" just="center" onClick={HandelOut}>
                         <p>Hallo {user ? user.email : "Guest"}</p>
                       <Link to={user ? "/" : "/login"}>
@@ -135,7 +137,7 @@ export const Header = () => {
                   <Link to="/orders">
                     <Flex dir='column' align="flex-start" just="center">
                       <p>Returm</p>
-                      <h3>Orders</h3>
+                      <h3>Your Order</h3>
                     </Flex>  
                   </Link> 
                   <Link to="/prime">

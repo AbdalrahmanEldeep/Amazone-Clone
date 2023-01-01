@@ -6,7 +6,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import LocalGroceryStoreTwoToneIcon from '@mui/icons-material/LocalGroceryStoreTwoTone';
 import SortTwoToneIcon from '@mui/icons-material/SortTwoTone';
 import { useAuth } from '../context/GlobalContext';
-import { auth } from '../../firebase';
 
 const Flex = styled.div`
   display: flex;
@@ -66,9 +65,9 @@ const Inp = styled.input`
  font-size: 1.3rem;
 `
 const LinksBox = styled.div`
+   gap: 20px;
    min-width: 500px;
    transition: bottom ease .4s;
-   padding: 0 30px;
    @media screen and (max-width:976px){
      position: fixed;
      bottom:0px;
@@ -83,6 +82,7 @@ const LinksBox = styled.div`
   }
 `
 const LinkEle = styled.div`
+  gap: 14px;
 `
 
 const ToggleIcon = styled.div`
@@ -100,9 +100,6 @@ export const Header = () => {
   const [toggler,setToggler] = useState(true);
   const {user} = useAuth();
 
-  function HandelOut(){
-    auth.signOut();
-  }
   return (
     <Head>
       <Flex just="space-between">
@@ -125,17 +122,17 @@ export const Header = () => {
         <LinksBox bottom={toggler ? "-100%" : "0px"}>
           <Flex just= {toggler ? "center" : "flex-end"}>
              <LinkEle>
-               <Flex gp= {toggler ? "50px"  : "30px"}>
-                    <Flex style={{color:"#fff",cursor:"pointer"}} dir='column' align="flex-start" just="center" onClick={HandelOut}>
-                        <p>Hallo {user ? user.email : "Guest"}</p>
-                      <Link to={user ? "/" : "/login"}>
-                        <h3>{user ? "Sign Out" : "Sign In"}</h3>
-                      </Link>
+               <Flex gp= {toggler ? "40px"  : "30px"}>
+                <Link to="/login">
+                    <Flex dir='column' align="flex-start" just="center">
+                      <p>Hallo {user ? user.email : "Guest"}</p>
+                      <h3>{user ? "Sign Out" : "Sign In"}</h3>
                     </Flex>  
+                  </Link>  
                   <Link to="/orders">
                     <Flex dir='column' align="flex-start" just="center">
                       <p>Returm</p>
-                      <h3>Orders</h3>
+                      <h3>Your Order</h3>
                     </Flex>  
                   </Link> 
                   <Link to="/prime">
