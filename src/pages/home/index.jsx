@@ -40,7 +40,6 @@ function App() {
 
   useEffect(() => {
     getData();
-    
   },[])
 
   useEffect(() => {

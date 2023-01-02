@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CurrencyFormat from 'react-currency-format';
 import styled from 'styled-components';
 import { UserRate } from './UserRate';
@@ -15,7 +15,10 @@ const CardBox = styled.section`
   gap: 30px;
   margin: auto;
   height: 100%;
-  padding: 20px;
+  padding: 0 70px;
+  @media screen and (max-width:676px){
+    padding: 0;
+  }
 `
 
 const PriceBox = styled.div`
@@ -30,8 +33,12 @@ const PriceBox = styled.div`
   bottom: 0;
   position: fixed;
   z-index: 100;
+  transition: bottom .4s ease;
   @media screen and (max-width:676px){
     width: 100%;
+  }
+  @media screen and (max-width:976px){
+    bottom: ${prop => prop.btm};
   }
 
 `
@@ -56,6 +63,13 @@ const Product = styled.div`
   padding: 30px;
   flex-wrap: wrap;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  cursor: pointer;
+  &:hover{
+     background-color: var(--dark-color);
+    *{
+     color: var(--white-color) !important;
+    }
+  }
   @media screen and (max-width:676px){
     width: 80%;
   }
@@ -106,12 +120,36 @@ const Btn = styled.button`
     color: ${(prop) => prop.bg};
   }
 `
+const ShoppingCard = styled.div`
+  position: fixed;
+  z-index: 100;
+  bottom: 50%;
+  transform: translateY(-50%);
+  left: -73px;
+  rotate: 90deg;
+  height: 30px;
+  font-weight: bold;
+  color: var(--white-color);
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  cursor: pointer;
+  padding: 0 30px;
+  text-align: center;
+  background-color: var(--brown-color);
+  display: none;
+  font-size: 1.2rem;
+  @media screen and (max-width:975px){
+    display: block;
+  }
+`
 export const Card = ({total,data}) => {
+  const [boxPriceStatus,setBoxPrice] = useState(false);
   return (
     <Container>
       <CardBox>
         {data.map((e) =>(
-          <Product key={e.id}>
+          <Product key={Math.random() * e.id * 10000}>
             <img src={e.image} width={120} alt="" />
             <Details>
               <Text>
@@ -123,7 +161,8 @@ export const Card = ({total,data}) => {
           </Product>
         ))}
       </CardBox>
-      <PriceBox>
+      <ShoppingCard onClick={() => setBoxPrice(!boxPriceStatus)}>{boxPriceStatus ? "Hide Card" : "Show Card"}</ShoppingCard>
+      <PriceBox btm= {boxPriceStatus ? "0" : "-100%"}>
             <Price>
               <h1>Total</h1>
               <CurrencyFormat fixedDecimalScale={true} decimalScale={2}	value={total} thousandSeparator="," isNumericString={true} prefix="$" displayType="text"/>
