@@ -79,8 +79,8 @@ const LinksBox = styled.div`
    padding: 0 30px;
    @media screen and (max-width:976px){
      position: fixed;
-     bottom:0px;
-     bottom: ${prop => prop.bottom};
+     top:0px;
+     top: ${prop => prop.bottom};
      right: 0;
      padding: 10px;
      background-color: var(--primary-color);
@@ -138,7 +138,7 @@ export const Header = () => {
           </SearchIconBox>
         </Search>
         {/* ====== NAV-LINKS-BOX-ELEMNTS =========== */}
-        <LinksBox bottom={toggler ? "-100%" : "0px"}>
+        <LinksBox bottom={toggler ? "-100%" : "80px"}>
           <Flex just= {toggler ? "center" : "flex-end"}>
              <LinkEle>
                <Flex gp= {toggler ? "50px"  : "30px"}>

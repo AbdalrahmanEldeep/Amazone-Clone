@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components';
-import ThumbUpTwoToneIcon from '@mui/icons-material/ThumbUpTwoTone';
-import PeopleOutlineTwoToneIcon from '@mui/icons-material/PeopleOutlineTwoTone';
 import { useAuth } from '../context/GlobalContext';
+import { UserRate } from './UserRate';
 
 const CardBox = styled.div`
     display: flex;
@@ -24,22 +23,6 @@ const CardBox = styled.div`
     }
     & h2{
         color: lightseagreen;
-    }
-`
-const Details = styled.div`
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 2;
-    & span,h3{
-        display: flex;
-        align-items: center;
-        color: var(--primary-color);
-        gap: 20px;
-    }
-    & span{
-         gap: 10px;
     }
 `
 
@@ -88,13 +71,7 @@ export const Product = ({data}) => {
             <img src={image} width="100px" alt="" />
             <h5>{title}</h5>
         </CardImg>
-       <Details>
-         <h2>${price}</h2>
-         <h3>
-            <span><ThumbUpTwoToneIcon fontSize='small'></ThumbUpTwoToneIcon>{rating.rate}</span>
-            <span><PeopleOutlineTwoToneIcon></PeopleOutlineTwoToneIcon>{rating.count}</span>
-         </h3>
-       </Details>
+        <UserRate data={[price,rating]}/>
        <ProductBtn onClick={Appender}>
             Append
        </ProductBtn>

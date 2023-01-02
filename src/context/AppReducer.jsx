@@ -1,3 +1,8 @@
+export const ClacTotal = (total) =>{
+    return total.reduce((accumulator,currentValue) =>{
+        return accumulator + currentValue?.price;
+    },0)
+}
 
 export const customState = {
     basket:[],

@@ -61,7 +61,6 @@ function App() {
   }, []);
   return (
     <>
-      <Header/>
       <Bannner/>
       <Grid>
         {data.map(({title,id,price,rating,image,description}) => {
