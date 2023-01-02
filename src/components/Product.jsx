@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Reveal } from 'react-reveal';
 import styled from 'styled-components';
 import { useAuth } from '../context/GlobalContext';
 import { UserRate } from './UserRate';
@@ -10,6 +11,7 @@ const CardBox = styled.div`
     align-items: center;
     background-color: #fff;
     width: 300px;
+    height: 380px;
     position: relative;
     padding: 30px;
     text-align: center;
@@ -66,15 +68,17 @@ export const Product = ({data}) => {
         })
     }
   return (
-    <CardBox>
-        <CardImg>
-            <img src={image} width="100px" alt="" />
-            <h5>{title}</h5>
-        </CardImg>
-        <UserRate data={[price,rating]}/>
-       <ProductBtn onClick={Appender}>
-            Append
-       </ProductBtn>
-    </CardBox>
+    <Reveal  up>
+        <CardBox>
+            <CardImg>
+                <img src={image} width="120px" height="130px" alt="" />
+                <h5>{title}</h5>
+            </CardImg>
+            <UserRate data={[price,rating]}/>
+        <ProductBtn onClick={Appender}>
+                Append
+        </ProductBtn>
+        </CardBox>
+  </Reveal>
   )
 }
