@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import CurrencyFormat from 'react-currency-format';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserRate } from './UserRate';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { useAuth } from '../context/GlobalContext';
+import ProductNotExist from "../assets/imgs/products-not-exist.webp"
 
 const Container = styled.div`
   height: calc(100vh - 80px);
@@ -14,7 +18,6 @@ const CardBox = styled.section`
   justify-items: center;
   gap: 30px;
   margin: auto;
-  height: 100%;
   padding: 0 70px;
   @media screen and (max-width:676px){
     padding: 0;
@@ -58,10 +61,12 @@ const Product = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  height: 550px;
   gap: 100px;
   margin: 30px 0;
   padding: 30px;
   flex-wrap: wrap;
+  position: relative;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   cursor: pointer;
   &:hover{
@@ -143,24 +148,50 @@ const ShoppingCard = styled.div`
     display: block;
   }
 `
+const DeleterIcon = styled.div`
+ position: absolute;
+ top: 10px;
+ right: 10px;
+ color: lightcoral;
+`
+
+const NotExist = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 export const Card = ({total,data}) => {
   const [boxPriceStatus,setBoxPrice] = useState(false);
+  const {basket,dispatch} = useAuth();
+  function Deleter(i){
+    dispatch({
+      type:"REMOVE_TO_BASKET",
+      item:basket.filter((e,index) => index != i),
+    })
+  }
   return (
     <Container>
-      <CardBox>
-        {data.map((e) =>(
-          <Product key={Math.random() * e.id * 10000}>
-            <img src={e.image} width={120} alt="" />
-            <Details>
-              <Text>
-                <p>{e.title}</p>
-                <p>{e.description}</p>
-              </Text>
-              <UserRate data={[e.price,e.rating]}/>
-            </Details>
-          </Product>
-        ))}
-      </CardBox>
+        {data.length > 0 ?         
+        <CardBox>
+          {
+          data.map((e,i) =>(
+            <Product key={Math.random() * e.id * 10000}>
+                <DeleterIcon onClick={() => Deleter(i)}>
+                  <HighlightOffIcon fontSize='large'/>
+                </DeleterIcon>
+                <img src={e.image} width={110} height={120} alt="" />
+                <Details>
+                  <Text>
+                    <p>{e.title}</p>
+                    <p>{e.description}</p>
+                  </Text>
+                  <UserRate data={[e.price,e.rating]}/>
+                </Details>
+            </Product>)) 
+          }  
+        </CardBox> : <NotExist><img src={ProductNotExist} alt="" /></NotExist>}
       <ShoppingCard onClick={() => setBoxPrice(!boxPriceStatus)}>{boxPriceStatus ? "Hide Card" : "Show Card"}</ShoppingCard>
       <PriceBox btm= {boxPriceStatus ? "0" : "-100%"}>
             <Price>
@@ -168,7 +199,7 @@ export const Card = ({total,data}) => {
               <CurrencyFormat fixedDecimalScale={true} decimalScale={2}	value={total} thousandSeparator="," isNumericString={true} prefix="$" displayType="text"/>
             </Price>
             {total > 0 ? <ButtonCollection>
-              <Btn bg="lightgreen" clr="var(--dark-color)">Checkout now</Btn>
+             <Link to="/"><Btn bg="lightgreen" clr="var(--dark-color)">Continue</Btn></Link>
               <Btn bg="var(--dark-color) " clr="lightgreen">Checkout now</Btn>
             </ButtonCollection> : null}
       </PriceBox>

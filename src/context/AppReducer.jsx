@@ -21,6 +21,11 @@ export const AppReducer = (state = customState,action) => {
                 ...state, 
                 basket:[...state.basket,action.item]
             }
+        case "REMOVE_TO_BASKET":
+            return{
+                ...state,
+                basket:action.item
+            }
         default:
             return state;
     }
