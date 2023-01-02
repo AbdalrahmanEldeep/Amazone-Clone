@@ -34,7 +34,13 @@ const Spanner = styled.div`
   justify-content: center;
   align-items: center;
 `
-
+const ProductHead = styled.h1`
+    text-align: center;
+    padding: 50px 0;
+    display: block;
+    font-size: 2.4rem;
+    color: var(--primary-color);
+`
 function App() {
   const { dispatch, user } = useAuth();
   const [data,setData] = useState([]);
@@ -72,6 +78,9 @@ function App() {
   return (
     <>
       <Bannner/>
+      <ProductHead>
+         Some Of Products
+      </ProductHead>
        {productStatusLoader ? 
           <Grid>
             {data.map(({title,id,price,rating,image,description}) => {

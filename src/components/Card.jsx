@@ -61,7 +61,7 @@ const Product = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 550px;
+  height: 600px;
   gap: 100px;
   margin: 30px 0;
   padding: 30px;
@@ -201,7 +201,7 @@ export const Card = ({total,data}) => {
             {total > 0 ? <ButtonCollection>
              <Link to="/"><Btn bg="lightgreen" clr="var(--dark-color)">Continue</Btn></Link>
               <Btn bg="var(--dark-color) " clr="lightgreen">Checkout now</Btn>
-            </ButtonCollection> : null}
+            </ButtonCollection> : <ButtonCollection style={{justifyContent:"center"}}><Link to="/"><Btn bg="lightgreen" clr="var(--dark-color)">GO Shopping !</Btn></Link></ButtonCollection>}
       </PriceBox>
     </Container>
   )

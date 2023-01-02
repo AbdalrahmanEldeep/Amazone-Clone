@@ -74,7 +74,6 @@ const Inp = styled.input`
  font-size: 1.3rem;
 `
 const LinksBox = styled.div`
-   min-width: 500px;
    transition: bottom ease .4s;
    padding: 0 30px;
    @media screen and (max-width:976px){
@@ -83,11 +82,8 @@ const LinksBox = styled.div`
      top: ${prop => prop.bottom};
      right: 0;
      padding: 10px;
+     width: 100%;
      background-color: var(--primary-color);
-     border-radius: 5px;
-     border-top-right-radius: 0;
-     border-top-left-radius: 0;
-     border-bottom-right-radius: 0;
   }
 `
 const LinkEle = styled.div`
@@ -102,6 +98,15 @@ const ToggleIcon = styled.div`
     display: block;
   }
 
+`
+const SoppingBagCard = styled.div`
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10000;
+  & *{
+    color: #000;
+  }
 `
 
 export const Header = () => {
@@ -139,9 +144,8 @@ export const Header = () => {
         </Search>
         {/* ====== NAV-LINKS-BOX-ELEMNTS =========== */}
         <LinksBox bottom={toggler ? "-100%" : "80px"}>
-          <Flex just= {toggler ? "center" : "flex-end"}>
              <LinkEle>
-               <Flex gp= {toggler ? "50px"  : "30px"}>
+               <Flex gp= {toggler ? "50px"  : "30px"} style={{flexWrap:"warp"}}>
                     <Flex style={{color:"#fff",cursor:"pointer"}} dir='column' align="flex-start" just="center" onClick={HandelOut}>
                         <p>Hallo {user ? user.email : "Guest"}</p>
                       <Link to={user ? "/" : "/login"}>
@@ -160,15 +164,8 @@ export const Header = () => {
                       <h3>Prime</h3>
                     </Flex>  
                   </Link> 
-                  <Link to="/cart">
-                    <Flex just="center" gp="5px">
-                      <LocalGroceryStoreTwoToneIcon fontSize='large'/>
-                      <h3>{basket?.length}</h3>
-                    </Flex>  
-                  </Link> 
                </Flex>
             </LinkEle>
-          </Flex>
         </LinksBox>
         {/* === NAV-TOGGLE-SM ========  */}
         <ToggleIcon onClick={() => setToggler(!toggler)}>
@@ -177,6 +174,14 @@ export const Header = () => {
           </Flex>  
         </ToggleIcon>
       </Flex>
+      <SoppingBagCard>
+        <Link to="/cart">
+          <Flex just="center" gp="5px">
+            <LocalGroceryStoreTwoToneIcon fontSize='large'/>
+            <h3>{basket?.length}</h3>
+          </Flex>  
+        </Link> 
+      </SoppingBagCard>
     </Head>
   )
 }

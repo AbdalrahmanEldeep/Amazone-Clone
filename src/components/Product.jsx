@@ -68,17 +68,19 @@ export const Product = ({data}) => {
         })
     }
   return (
-    <Reveal  up>
-        <CardBox>
-            <CardImg>
-                <img src={image} width="120px" height="130px" alt="" />
-                <h5>{title}</h5>
-            </CardImg>
-            <UserRate data={[price,rating]}/>
-        <ProductBtn onClick={Appender}>
-                Append
-        </ProductBtn>
-        </CardBox>
-  </Reveal>
+    <>
+        <Reveal  up>
+            <CardBox>
+                <CardImg>
+                    <img src={image} width="120px" height="130px" alt="" />
+                    <h5>{title}</h5>
+                </CardImg>
+                <UserRate data={[price,rating]}/>
+            <ProductBtn onClick={Appender}>
+                    Append
+            </ProductBtn>
+            </CardBox>
+      </Reveal>
+    </>
   )
 }
