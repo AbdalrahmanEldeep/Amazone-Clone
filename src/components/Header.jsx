@@ -7,6 +7,7 @@ import LocalGroceryStoreTwoToneIcon from '@mui/icons-material/LocalGroceryStoreT
 import SortTwoToneIcon from '@mui/icons-material/SortTwoTone';
 import { useAuth } from '../context/GlobalContext';
 import { auth } from '../../firebase';
+import { getProducts } from '../router/routes';
 
 const Flex = styled.div`
   display: flex;
@@ -113,9 +114,17 @@ export const Header = () => {
   const [toggler,setToggler] = useState(true);
   const {user,basket} = useAuth();
   const [scrollStatus,setScroll] = useState(false);
+  const {data,setData,dataFilter,setDataFilter} = getProducts();
 
   function HandelOut(){
     auth.signOut();
+  }
+  function dataSearch({target}){
+    if(target.value.length > 0){
+       setData(data.filter((e) => e.title.toLowerCase().startsWith(target.value)))
+    }else{
+      setData(dataFilter);
+    }
   }
 
   useEffect(() =>{
@@ -137,7 +146,7 @@ export const Header = () => {
         </Link>
       {/* === SEARCH-BOX ============== */}
         <Search>
-          <Inp type="search"/>
+          <Inp type="search" onInput={dataSearch}/>
           <SearchIconBox>
               <SearchIcon/>
           </SearchIconBox>

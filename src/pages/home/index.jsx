@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { auth } from "../../../firebase";
-import { Header } from "../../components/Header";
 import { useAuth } from "../../context/GlobalContext";
 import banner from "../../assets/imgs/home.jpg"
 import { Product } from "../../components/Product";
 import { MagnifyingGlass } from "react-loader-spinner";
+import { getProducts } from "../../router/routes";
 
 const Bannner = styled.div`
   min-height: 60vh;
@@ -19,6 +19,7 @@ const Grid = styled.div`
   grid-template-columns: repeat(3,1fr);
   justify-items: center;
   padding: 50px;
+  min-height: 500px;
   gap: 70px;
   @media screen and (max-width:976px){
     grid-template-columns: repeat(2,1fr);
@@ -43,22 +44,8 @@ const ProductHead = styled.h1`
 `
 function App() {
   const { dispatch, user } = useAuth();
-  const [data,setData] = useState([]);
-  const [productStatusLoader,setProductStatus] = useState(false);
-
-
-   const getData = async () =>{
-     const res = await fetch('https://fakestoreapi.com/products');
-     const products = await res.json();
-     setData(products);
-     setProductStatus(true);
-  }
-
-  useEffect(() => {
-    getData();
-  },[])
-
-
+  const {data,productStatusLoader} = getProducts();
+  
   useEffect(() => {
     document.title = "Home | Page";
     auth.onAuthStateChanged((user) => {
